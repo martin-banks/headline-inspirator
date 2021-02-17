@@ -1,6 +1,10 @@
 import React, { useState, useEffect, useRef } from 'react'
 import Styled from 'styled-components'
 
+import Dump from '../components/dump'
+import Card from '../components/result-card'
+import Loading from '../components/loading'
+
 
 const InputContainer = Styled.section`
   display: grid;
@@ -25,12 +29,7 @@ const Submit = Styled.input`
   cursor: pointer;
 `
 
-const Dump = Styled.pre`
-  display: block;
-  background: rgba(0,0,0, 0.8);
-  color: lime;
-  padding: 20px;
-`
+
 
 const CardContainer = Styled.div`
   width: 100%;
@@ -39,14 +38,7 @@ const CardContainer = Styled.div`
   grid-gap: 10px;
   padding: 20px;
 `
-const Card = Styled.div`
-  outline: solid 1px lightgrey;
-  padding: 10px;
-`
 
-const Li = Styled.li`
-  text-transform: capitalize;
-`
 
 
 function SearchInput (props) {
@@ -56,13 +48,7 @@ function SearchInput (props) {
 
   const inputRef = useRef()
 
-  const queryTypes = [
-    'topics',
-    'ml',
-    'rel_rhy',
-  ]
-
-  const queryLabels = {
+  const queries = {
     topics: 'Related topics',
     ml: 'Similar in meaning',
     rel_rhy: 'Rhymes with',
@@ -95,7 +81,7 @@ function SearchInput (props) {
     if (searchWords) {
       setIsLoading(true)
 
-      for (let type of queryTypes) {
+      for (let type of Object.keys(queries)) {
         await fetch(`${endPoint}${type}=${searchWords.join('+')}&max=${limit}`)
           .then(res => res.json())
           .then(data => {
@@ -108,14 +94,13 @@ function SearchInput (props) {
 
         setIsLoading(false)
     }
-  }, [searchWords])
+  }, [ searchWords ])
 
   return (
     <section>
       <InputContainer>
         <h2>Enter keywords to begin</h2>
         <p><i>No punctuation, number or special characters. Lowercase only</i></p>
-        { isLoading && <h3>Requesting data...</h3> }
 
         <form onSubmit={ handleSubmit }>
           <TextInput ref={ inputRef } type="text" name="keywords" id="keywords" readOnly={ isLoading }/>
@@ -125,21 +110,29 @@ function SearchInput (props) {
 
       <CardContainer>
         {
-          Object.keys(results).map(k => <Card>
-            <h3>{ queryLabels[k] || k }</h3>
+          Object.keys(results).map(k => <Card
+            key={ `result-card-${queries[k]}` }
+            handleResultClick={ handleSubmitFromResult }
+            results={ results }
+            title={ queries[k] }
+            type={ k }
+          />)
+        }
+            {/* <h3>{ queries[k] }</h3>
             <ul>
               { results[k].length
                 ? results[k].map(r => <Li onClick={ handleSubmitFromResult }>{ r.word }</Li>)
                 : <p><i>No matches found</i></p>
               }
             </ul>
-          </Card>)
-        }
+            // </Card>)
+          */}
+
       </CardContainer>
 
-      {/* { results &&
-        <Dump>{ JSON.stringify(results, null, 2) }</Dump>
-      } */}
+      {/* { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
+
+      { isLoading && <Loading />}
 
     </section>
   )
