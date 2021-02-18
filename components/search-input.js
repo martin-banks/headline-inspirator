@@ -28,9 +28,6 @@ const Submit = Styled.input`
   font-size: 24px;
   cursor: pointer;
 `
-
-
-
 const CardContainer = Styled.div`
   width: 100%;
   display: grid;
@@ -118,16 +115,6 @@ function SearchInput (props) {
             type={ k }
           />)
         }
-            {/* <h3>{ queries[k] }</h3>
-            <ul>
-              { results[k].length
-                ? results[k].map(r => <Li onClick={ handleSubmitFromResult }>{ r.word }</Li>)
-                : <p><i>No matches found</i></p>
-              }
-            </ul>
-            // </Card>)
-          */}
-
       </CardContainer>
 
       {/* { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
