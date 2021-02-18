@@ -1,6 +1,8 @@
 import React from 'react'
 import Styled from 'styled-components'
 
+import Spinner from './spinner'
+
 
 const Wrapper = Styled.div`
   position: fixed;
@@ -9,16 +11,19 @@ const Wrapper = Styled.div`
   width: 100vw;
   height: 100vh;
   background: rgba(255,255,255, 0.4);
-  backdrop-filter: blur(5px);
-  z-index: 1000;
+  backdrop-filter: blur(3px);
   display: grid;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 `
 
 const Message = Styled.div`
-  padding: 10px 20px;
-  background: black;
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  padding: 20px 20px;
+  background: rgba(0,0,0, 0.5);
   border-radius: 4px;
   * {
     color: white;
@@ -27,11 +32,13 @@ const Message = Styled.div`
   }
 `
 
+
 function Loading () {
 
   return <Wrapper>
     <Message>
-      <h4>Requesting data...</h4>
+      <Spinner />
+      <h4>Fetching data...</h4>
     </Message>
   </Wrapper>
 }
