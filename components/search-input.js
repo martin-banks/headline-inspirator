@@ -4,6 +4,7 @@ import Styled from 'styled-components'
 import Dump from '../components/dump'
 import Card from '../components/result-card'
 import Loading from '../components/loading'
+import AddNewCard from '../components/add-new-card'
 
 
 const InputContainer = Styled.section`
@@ -46,8 +47,8 @@ function SearchInput (props) {
   const inputRef = useRef()
 
   const queries = {
+    // ml: 'Similar in meaning',
     topics: 'Related topics',
-    ml: 'Similar in meaning',
     rel_rhy: 'Rhymes with',
   }
 
@@ -115,11 +116,12 @@ function SearchInput (props) {
             type={ k }
           />)
         }
+        <AddNewCard />
       </CardContainer>
 
       {/* { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
 
-      { isLoading && <Loading />}
+      { isLoading && <Loading /> }
 
     </section>
   )
