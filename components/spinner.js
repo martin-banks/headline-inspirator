@@ -11,24 +11,38 @@ const Svg = Styled.svg`
   transform: translateX(-50%);
 `
 
-const animateline = keyframes`
+const animateLongLine = keyframes`
   to {
     stroke-dashoffset: 1200
+  }
+`
+const animateShortLine = keyframes`
+  to {
+    stroke-dashoffset: -1200
   }
 `
 
 const Circle = Styled.circle`
   stroke: white;
-  stroke-width: 15px;
+  stroke-width: 12px;
   fill: none;
   stroke-dasharray: 52;
-  animation: ${animateline} 15s infinite linear;
+  animation: ${animateLongLine} 20s infinite linear;
+`
+
+const InnerCircle = Styled.circle`
+  stroke: white;
+  stroke-width: 10px;
+  fill: none;
+  stroke-dasharray: 48;
+  animation: ${animateShortLine} 25s infinite linear;
 `
 
 
 function Spinner () {
   return <Svg viewBox="0 0 100 100" width="80px">
     <Circle cx="50" cy="50" r="50" />
+    <InnerCircle cx="50" cy="50" r="30" />
   </Svg>
 }
 
