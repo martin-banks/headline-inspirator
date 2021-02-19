@@ -106,18 +106,21 @@ function SearchInput (props) {
         </form>
       </InputContainer>
 
-      <CardContainer>
-        {
-          Object.keys(results).map(k => <Card
-            key={ `result-card-${queries[k]}` }
-            handleResultClick={ handleSubmitFromResult }
-            results={ results }
-            title={ queries[k] }
-            type={ k }
-          />)
-        }
-        <AddNewCard />
-      </CardContainer>
+      { Object.keys(results).length
+        ? <CardContainer>
+          {
+            Object.keys(results).map(k => <Card
+              key={ `result-card-${queries[k]}` }
+              handleResultClick={ handleSubmitFromResult }
+              results={ results }
+              title={ queries[k] }
+              type={ k }
+            />)
+          }
+          <AddNewCard />
+        </CardContainer>
+        : ''
+      }
 
       {/* { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
 
