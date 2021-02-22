@@ -1,7 +1,6 @@
 import React, { useState } from 'react'
 import Styled from 'styled-components'
 
-// import queries from '../queries'
 import queries from '../queries-new.json'
 
 
@@ -21,7 +20,6 @@ const Li = Styled.li`
     background: rgba(0,0,0, 0.1)
   }
 `
-
 const Front = Styled.div`
   background: white;
   padding: 10px;
@@ -36,7 +34,6 @@ function Card (props) {
   const {
     index,
     type,
-    title,
     handleResultClick,
     results,
     handleQueryChange,
@@ -56,15 +53,6 @@ function Card (props) {
       console.log(`Looking for ${e.target.value} |`, q)
       return q.type === e.target.value
     })[0]
-    // for (let querySet of queries) {
-    //   for (let query of querySet.queries) {
-    //     if (query.type = e.target.value) {
-    //       newQuery = query
-    //       break
-    //     }
-    //   }
-    // }
-  
 
     console.log({ newQuery })
     handleQueryChange({ type, newQuery, index })
@@ -92,20 +80,6 @@ function Card (props) {
 
           <h4>Choose search query</h4>
           <select onChange={ handleSelectQuery }>
-            {/* { queries
-              .map(group => group.queries
-                .map((q, i) => <option
-                  key={`option-${q.name}-${i}`}
-                  value={ i }
-                >{ q.name }</option>)
-              )
-            } */}
-            {/* {
-              Object.keys(queries).map(k => queries[k]().queries.map(query => <option
-                key={ `${option}-${query.name}` }
-                value={ query.type }
-              >{ query.name}</option>))
-            } */}
             {
               queries.map((q, i) => <option
                 key={ `${q.type}--${i}` }
