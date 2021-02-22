@@ -5,8 +5,7 @@ import Styled, { keyframes } from 'styled-components'
 const Svg = Styled.svg`
   position: relative;
   overflow: visible;
-  /* margin: 0 auto; */
-  margin-bottom: 20px;
+  margin-bottom: 30px;
   left: 50%;
   transform: translateX(-50%);
 `
