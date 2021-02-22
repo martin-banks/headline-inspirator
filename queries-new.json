@@ -1,0 +1,26 @@
+[
+  {
+    "api": "datamuse",
+    "type": "datamuse__ml",
+    "name": "Similar meaning",
+    "description": "Words with similar meaning",
+    "query": "ml",
+    "formula": "https://api.datamuse.com/words?ml=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_rhy",
+    "name": "Rhyming",
+    "description": "Words that rhyme",
+    "query": "rel_rhy",
+    "formula": "https://api.datamuse.com/words?rel_rhy=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__topics",
+    "name": "Topics",
+    "description": "Words describing similar topics",
+    "query": "topics",
+    "formula": "https://api.datamuse.com/words?topics=<words>&max=<max>"
+  }
+]
