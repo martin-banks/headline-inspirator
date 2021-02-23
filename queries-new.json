@@ -1,11 +1,91 @@
 [
   {
     "api": "datamuse",
-    "type": "datamuse__ml",
-    "name": "Similar meaning",
-    "description": "Words with similar meaning",
-    "query": "ml",
-    "formula": "https://api.datamuse.com/words?ml=<words>&max=<max>"
+    "type": "datamuse__rel_jja",
+    "name": "Popular nouns",
+    "description": "Popular nouns modified by the given adjective. For example; gradual → increase",
+    "query": "rel_jja",
+    "formula": "https://api.datamuse.com/words?rel_jja=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_jjb",
+    "name": "Popular adjectives",
+    "description": "Popular adjectives modified by the given noun. For example; beach → sandy",
+    "query": "rel_jjb",
+    "formula": "https://api.datamuse.com/words?rel_jjb=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_syn",
+    "name": "Synonyms",
+    "description": "Words with the same meaning",
+    "query": "rel_syn",
+    "formula": "https://api.datamuse.com/words?rel_syn=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_ant",
+    "name": "Antonyms",
+    "description": "Words with the opposite meaning",
+    "query": "rel_ant",
+    "formula": "https://api.datamuse.com/words?rel_ant=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_trg",
+    "name": "\"Triggers\"",
+    "description": "Words that are likely associated within the same piece of text; cow → milking",
+    "query": "rel_trg",
+    "formula": "https://api.datamuse.com/words?rel_trg=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_spc",
+    "name": "\"Kind of\"",
+    "description": "Hypernyms, categories with broader meaning than the search term; gondola → boat",
+    "query": "rel_spc",
+    "formula": "https://api.datamuse.com/words?rel_spc=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_gen",
+    "name": "\"More general than\"",
+    "description": "Hypernym, words that fall withing a searched category; boat → gondola",
+    "query": "rel_gen",
+    "formula": "https://api.datamuse.com/words?rel_gen=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_com",
+    "name": "\"Comprises\"",
+    "description": "Holonym, words that comprise the searched term; car → accelerator",
+    "query": "rel_com",
+    "formula": "https://api.datamuse.com/words?rel_com=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_par",
+    "name": "\"Part of\"",
+    "description": "Holonym, words that the searched term comprises; accelerator → car",
+    "query": "rel_par",
+    "formula": "https://api.datamuse.com/words?rel_par=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_bga",
+    "name": "Frequent followers",
+    "description": "Words that frequently follow searched term; wreak → havoc",
+    "query": "rel_bga",
+    "formula": "https://api.datamuse.com/words?rel_bga=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_bgb",
+    "name": "Frequent predecessors",
+    "description": "Words that frequently precede searched term; havoc → wreak",
+    "query": "rel_bgb",
+    "formula": "https://api.datamuse.com/words?rel_bgb=<words>&max=<max>"
   },
   {
     "api": "datamuse",
@@ -17,10 +97,77 @@
   },
   {
     "api": "datamuse",
+    "type": "datamuse__rel_nry",
+    "name": "Approximate rhymes",
+    "description": "Words that approximately rhyme; forest → chorus",
+    "query": "rel_nry",
+    "formula": "https://api.datamuse.com/words?rel_nry=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_hom",
+    "name": "Sounds like",
+    "description": "Sound alike words; course → coarse",
+    "query": "rel_hom",
+    "formula": "https://api.datamuse.com/words?rel_hom=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rel_cns",
+    "name": "Consonant match",
+    "description": "Words with matching consonants; sample → simple",
+    "query": "rel_cns",
+    "formula": "https://api.datamuse.com/words?rel_cns=<words>&max=<max>"
+  },
+
+
+
+  {
+    "api": "datamuse",
+    "type": "datamuse__ml",
+    "name": "Similar meaning",
+    "description": "Words with similar meaning",
+    "query": "ml",
+    "formula": "https://api.datamuse.com/words?ml=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
     "type": "datamuse__topics",
     "name": "Topics",
     "description": "Words describing similar topics",
     "query": "topics",
     "formula": "https://api.datamuse.com/words?topics=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__sl",
+    "name": "Sounds like",
+    "description": "Words that are pronounced similarly",
+    "query": "sl",
+    "formula": "https://api.datamuse.com/words?sl=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__sp",
+    "name": "Spelled like",
+    "description": "Words that are spelled similarly",
+    "query": "sp",
+    "formula": "https://api.datamuse.com/words?sp=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__lc",
+    "name": "Left context",
+    "description": "Words words that immidiately precede",
+    "query": "rel_lc",
+    "formula": "https://api.datamuse.com/words?lc=<words>&max=<max>"
+  },
+  {
+    "api": "datamuse",
+    "type": "datamuse__rc",
+    "name": "Right context",
+    "description": "Words words that immidiately follow",
+    "query": "rel_rc",
+    "formula": "https://api.datamuse.com/words?rc=<words>&max=<max>"
   }
 ]
