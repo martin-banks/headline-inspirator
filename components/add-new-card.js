@@ -15,8 +15,10 @@ const Wrapper = Styled.button`
   }
 `
 
-function AddNewCard () {
-  return <Wrapper>
+
+function AddNewCard (props) {
+  const { addCard } = props
+  return <Wrapper onClick={ addCard }>
     <h4>Add new card</h4>
   </Wrapper>
 }
