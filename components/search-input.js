@@ -5,17 +5,25 @@ import Dump from '../components/dump'
 import Card from '../components/result-card'
 import Loading from '../components/loading'
 import AddNewCard from '../components/add-new-card'
+import ChainedSearch from '../components/chained-search'
+import SectionContainer from '../components/section-container'
 
 import queries from '../queries-new.json'
 
 
-const InputContainer = Styled.section`
+const Title = Styled.div`
+  text-align: center;
   display: grid;
   justify-content: center;
   align-items: center;
-  width: 100vw;
-  max-width: 600px;
-  text-align: center;
+`
+const Form = Styled.form`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
   margin: 0 auto;
 `
 const TextInput = Styled.input`
@@ -30,6 +38,8 @@ const Submit = Styled.input`
   padding: 10px;
   font-size: 24px;
   cursor: pointer;
+  max-width: 200px;
+  margin: 0 auto;
 `
 const CardContainer = Styled.div`
   width: 100%;
@@ -43,7 +53,7 @@ const CardContainer = Styled.div`
 
 function SearchInput (props) {
   const [ searchWords, storeSearchWords ] = useState(null)
-  const [ results, storeResults ] = useState({})
+  const [ results, storeResults ] = useState([])
   const [ isLoading, setIsLoading ] = useState(false)
   const [ userQueries, updateQueries ] = useState([])
   const inputRef = useRef()
@@ -71,13 +81,17 @@ function SearchInput (props) {
     }
   }
 
-  const changecardQuery = ({ index, type, newQuery }) => {
+  const changeCardQuery = ({ index, type, newQuery }) => {
     updateQueries(prev => {
       const update = [ ...prev ]
+      console.log({ prev, update })
       update[index] = newQuery
-      console.log({ update })
       return update
     })
+  }
+
+  const addCard = () => {
+    updateQueries(prev => [...prev, queries[0] ])
   }
 
 
@@ -95,10 +109,13 @@ function SearchInput (props) {
   useEffect(async () => {
     if (searchWords) {
       setIsLoading(true)
+      // const prevResults = results.length ? [ ...results ] : []
       storeResults([])
 
-      for (let query of userQueries) {
-        console.log({ query })
+
+
+      for (let [i, query] of userQueries.entries()) {
+        console.log({ query, i })
         const { formula, name, description, type } = query
         const url = formula
           .replace('<words>', searchWords.join('+'))
@@ -108,8 +125,12 @@ function SearchInput (props) {
           .then(res => res.json())
           .then(data => {
             const toStore = { data, name, description, type }
-            console.log({ toStore })
-            storeResults(prev => ([ ...prev, toStore ]))
+            // console.log({ toStore })
+            storeResults(prev => {
+              const update = [ ...prev ]
+              update[i] = toStore
+              return update
+            })
           })
       }
       setIsLoading(false)
@@ -117,40 +138,54 @@ function SearchInput (props) {
   }, [ searchWords, userQueries ])
 
   return (
-    <section>
-      <InputContainer>
-        <h2>Enter keywords to begin</h2>
-        <p><i>No punctuation, numbers or special characters</i></p>
+    <article>
+      <SectionContainer>
+        <Title>
+          <h2>Enter keywords to begin</h2>
+          <p><i>No punctuation, numbers or special characters</i></p>
+        </Title>
 
-        <form onSubmit={ handleSubmit }>
+        <Form onSubmit={ handleSubmit }>
           <TextInput ref={ inputRef } type="text" name="keywords" id="keywords" readOnly={ isLoading }/>
           <Submit type="submit" value="Go!" readOnly={ isLoading }/>
-        </form>
-      </InputContainer>
+        </Form>
+      </SectionContainer>
 
-      { results.length
-        ? <CardContainer>
-          {
-            results.map(result => <Card
-              key={ `result-card-${result.type}` }
-              index={ 0 }
-              handleResultClick={ handleSubmitFromResult }
-              handleQueryChange={ changecardQuery }
-              results={ result }
-              type={ result.type }
-            />)
-          }
-          <AddNewCard />
-        </CardContainer>
-        : ''
-      }
+
+      <SectionContainer>
+        { results.length
+          ? <CardContainer>
+            {
+              results.map((result, i) => <Card
+                key={ `resultcard-${i}-${result.type}` }
+                index={ i }
+                handleResultClick={ handleSubmitFromResult }
+                handleQueryChange={ changeCardQuery }
+                results={ result }
+                type={ result.type }
+              />)
+            }
+            <AddNewCard addCard={ addCard } />
+          </CardContainer>
+          : ''
+        }
+      </SectionContainer>
 
       {/* { results && <Dump>{ JSON.stringify(userQueries, null, 2) }</Dump> }
       { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
 
+
+
+      <SectionContainer>
+        <ChainedSearch
+          initialKeywords={ searchWords }
+          initialQueries={ userQueries }
+        />
+      </SectionContainer>
+
       { isLoading && <Loading /> }
 
-    </section>
+    </article>
   )
 }
 
