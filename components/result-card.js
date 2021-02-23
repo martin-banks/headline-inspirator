@@ -50,7 +50,6 @@ function Card (props) {
   const handleSelectQuery = e => {
     console.log(e.target.value)
     let newQuery = queries.filter(q => {
-      console.log(`Looking for ${e.target.value} |`, q)
       return q.type === e.target.value
     })[0]
 
@@ -64,9 +63,11 @@ function Card (props) {
         <Front>
           <button onClick={ showBack } >Settings</button>
           <h3>{ results.name }</h3>
+          <p><i>{ results.description }</i></p>
+          <hr />
           <Ul>
             { results.data.length
-              ? results.data.map((r, i) => <Li key={ `result-item-${type}-${i}` } onClick={ handleResultClick }>{ r.word }</Li>)
+              ? results.data.map((r, i) => <Li key={ `result-item-${index}-${i}` } onClick={ handleResultClick }>{ r.word }</Li>)
               : <p><i>No matches found</i></p>
             }
           </Ul>
@@ -75,14 +76,14 @@ function Card (props) {
 
       { flipped &&
         <Back>
-          <button onClick={ showFront } >Settings</button>
+          <button onClick={ showFront } >Close</button>
           <h3>Card settings for { results.name }</h3>
 
           <h4>Choose search query</h4>
           <select onChange={ handleSelectQuery }>
             {
               queries.map((q, i) => <option
-                key={ `${q.type}--${i}` }
+                key={ `${q.type}--${index}-${i}` }
                 value={ q.type }
                 selected={ type === q.type }
               >{ q.name }</option>)
