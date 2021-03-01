@@ -7,6 +7,7 @@ import Loading from '../components/loading'
 import AddNewCard from '../components/add-new-card'
 import ChainedSearch from '../components/chained-search'
 import SectionContainer from '../components/section-container'
+import Form from './form'
 
 import queries from '../queries-new.json'
 
@@ -16,15 +17,6 @@ const Title = Styled.div`
   display: grid;
   justify-content: center;
   align-items: center;
-`
-const Form = Styled.form`
-  position: relative;
-  display: grid;
-  grid-template-columns: 1fr;
-  justify-content: center;
-  width: 100%;
-  max-width: 1000px;
-  margin: 0 auto;
 `
 const TextInput = Styled.input`
   display: block;
