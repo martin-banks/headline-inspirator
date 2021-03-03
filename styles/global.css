@@ -10,3 +10,10 @@ body {
 * {
   box-sizing: border-box;
 }
+
+
+h1 {
+  text-align: center;
+  font-size: 60px;
+  margin-bottom: 60px;
+}
