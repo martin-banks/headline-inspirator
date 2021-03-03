@@ -3,14 +3,14 @@ import Styled from 'styled-components'
 
 
 const Ul = Styled.ul`
-  margin: 0;
-  padding: 0;
 `
 
 const Li = Styled.li`
   margin: 0;
-  padding: 5px 10px;
-  list-style: none;
+  padding: 5px 0px;
+  span {
+    background: lightsteelblue;
+  }
 `
 
 function PhraseList (props) {
@@ -19,18 +19,23 @@ function PhraseList (props) {
 
   useEffect(() => {
     if (search && replace) {
-      const replacements = phrases.map(p => p.toLowerCase().replace(search, replace))
+      const replacements = phrases
+        .map(p => p
+            .toLowerCase()
+            .replace(search, `<span>${ replace }</span>`)
+          )
       storeWordsToRender(replacements)
     } else {
       storeWordsToRender(phrases)
     }
-  })
+  }, [search, replace, phrases])
+
   return <div>
-    <h2>{ replace } | { search }</h2>
+    <h3>Phrases</h3>
       <Ul>
       {
         wordsToRender
-          .map(p => <Li>{ p }</Li>)
+          .map((p, i) => <Li key={ `phrase-${i}` } dangerouslySetInnerHTML={{ __html: p}}/>)
         }
     </Ul>
   </div>
