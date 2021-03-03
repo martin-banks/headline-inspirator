@@ -14,7 +14,7 @@ function PageTitle (props) {
     title,
     subhead,
     intro,
-    children,
+    children, 
   } = props
 
   return <Title>
