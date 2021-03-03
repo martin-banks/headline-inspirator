@@ -7,7 +7,6 @@ import Loading from '../components/loading'
 import AddNewCard from '../components/add-new-card'
 import ChainedSearch from '../components/chained-search'
 import SectionContainer from '../components/section-container'
-import Form from './form'
 
 import queries from '../queries-new.json'
 
@@ -40,6 +39,15 @@ const CardContainer = Styled.div`
   grid-gap: 10px;
   padding: 20px;
 `
+const Form = Styled.form`
+  position: relative;
+  display: grid;
+  grid-template-columns: 1fr;
+  justify-content: center;
+  width: 100%;
+  max-width: 1000px;
+  margin: 0 auto;
+`
 
 
 
@@ -54,6 +62,7 @@ function SearchInput (props) {
 
   const handleSubmit = e => {
     e.preventDefault()
+    console.log(e.target.keywords.value)
     if (!isLoading) {
       const keywords = e.target.keywords.value
         .trim()
@@ -83,7 +92,7 @@ function SearchInput (props) {
   }
 
   const addCard = () => {
-    updateQueries(prev => [...prev, queries[0] ])
+    updateQueries(prev => [ ...prev, queries[0] ])
   }
 
 
@@ -145,8 +154,7 @@ function SearchInput (props) {
 
 
       <SectionContainer>
-        { results.length
-          ? <CardContainer>
+        { results.length && <CardContainer>
             {
               results.map((result, i) => <Card
                 key={ `resultcard-${i}-${result.type}` }
@@ -159,12 +167,11 @@ function SearchInput (props) {
             }
             <AddNewCard addCard={ addCard } />
           </CardContainer>
-          : ''
         }
       </SectionContainer>
 
-      {/* { results && <Dump>{ JSON.stringify(userQueries, null, 2) }</Dump> }
-      { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
+      {/* { results && <Dump>{ JSON.stringify(userQueries, null, 2) }</Dump> } */}
+      {/* { results && <Dump>{ JSON.stringify(results, null, 2) }</Dump> } */}
 
 
 
