@@ -164,10 +164,9 @@ export default function Home (props) {
         </SearchWords>
 
         <ResultContainer>
-          <div>
-            <h3>Rhymes</h3>
-            { rhymes &&
-              // <Dump>{ JSON.stringify(rhymes, null, 2)}</Dump>
+          { rhymes &&
+            <div>
+              <h3>Rhymes</h3>
               <Ul>
                 {
                   rhymes.map(r => <Rhyme
@@ -176,8 +175,8 @@ export default function Home (props) {
                   >{ r.word }</Rhyme>)
                 }
               </Ul>
-            }
-          </div>
+            </div>
+          }
 
           { phrases && <PhraseList
             phrases={ phrases }
