@@ -1,7 +1,9 @@
+
 import Head from 'next/head'
 import Styled from 'styled-components'
 
 import SearchInput from '../components/search-input'
+import PageTitle from '../components/page-title'
 
 
 const Container = Styled.div`
@@ -36,22 +38,8 @@ const Title = Styled.h1`
 export default function Home () {
   return (
     <Container>
-      <Head>
-        <title>Headline-ificator | Word association</title>
-        <link rel="icon" href="/favicon.ico" />
-
-        <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-        <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-        <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-        <link rel="manifest" href="/site.webmanifest" />
-        <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#5bbad5" />
-        <meta name="theme-color" content="#ffffff" />
-      </Head>
-
       <main>
-        <Title>
-          Word association
-        </Title>
+        <PageTitle title="Word association" />
         <SearchInput />
       </main>
 
