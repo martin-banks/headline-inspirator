@@ -14,20 +14,17 @@ function processDictPage (page) {
   page
     .replace(/^[\s|\S|a-z|A-Z|0-9]+\<div id\=Definition\>/i, '')
     .split('<section')
-    .filter(a => a.includes('<h2>'))
-    .map(b => b.split('<h2>'))
-    .map(c => c
-      .filter(d => !d.includes('data-src='))
-      .map(e => e
+    .filter(x => x.includes('<h2>'))
+    .map(x => x.split('<h2>'))
+    .map(x => x
+      .filter(x => !x.includes('data-src='))
+      .map(x => x
         .replace(/<\/h2>[\s|\S\.]+/, '')
         .replace(/<\/span>/gi, '')
         .replace(/\<span class=\"idir\"\>/, '')
       )
     )
-    .forEach(f => {
-      console.log({ f })
-      idioms.push(...f)
-    })
+    .forEach(x => idioms.push(...x))
 
   // Most (if not all) results will have a list of related content later in the page
   // This is useful for pages where no main results are returned
@@ -52,7 +49,7 @@ function processDictPage (page) {
     )
 
     const output = [...new Set([...idioms, ...idiomsAdditional])]
-    console.log({ output })
+
     return output
 }
 
