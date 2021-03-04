@@ -135,11 +135,6 @@ export default function Home (props) {
 
   return (
     <Container>
-      <Head>
-        <title>Headlineificator</title>
-        <link rel="icon" href="/favicon.ico" />
-      </Head>
-
       <main>
         <Title title="Headline-ificator" />
 

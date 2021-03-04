@@ -1,5 +1,5 @@
 
-import Head from 'next/head'
+// import Head from 'next/head'
 import Styled from 'styled-components'
 
 import SearchInput from '../components/search-input'
@@ -27,12 +27,12 @@ const Footer = Styled.footer`
     text-decoration: none;
   }
 `
-const Title = Styled.h1`
-  margin: 0;
-  line-height: 1.15;
-  font-size: 4rem;
-  text-align: center;
-`
+// const Title = Styled.h1`
+//   margin: 0;
+//   line-height: 1.15;
+//   font-size: 4rem;
+//   text-align: center;
+// `
 
 
 export default function Home () {
