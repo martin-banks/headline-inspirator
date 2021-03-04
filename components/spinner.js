@@ -2,6 +2,9 @@ import React from 'react'
 import Styled, { keyframes } from 'styled-components'
 
 
+const Wrapper = Styled.div`
+  margin-bottom: 5px;
+`
 const Svg = Styled.svg`
   position: relative;
   overflow: visible;
@@ -23,15 +26,14 @@ const animateShortLine = keyframes`
 
 const Circle = Styled.circle`
   stroke: white;
-  stroke-width: 12px;
+  stroke-width: 10px;
   fill: none;
   stroke-dasharray: 52;
   animation: ${animateLongLine} 20s infinite linear;
 `
-
 const InnerCircle = Styled.circle`
   stroke: white;
-  stroke-width: 10px;
+  stroke-width: 6px;
   fill: none;
   stroke-dasharray: 48;
   animation: ${animateShortLine} 25s infinite linear;
@@ -39,10 +41,12 @@ const InnerCircle = Styled.circle`
 
 
 function Spinner () {
-  return <Svg viewBox="0 0 100 100" width="80px">
-    <Circle cx="50" cy="50" r="50" />
-    <InnerCircle cx="50" cy="50" r="30" />
-  </Svg>
+  return <Wrapper>
+      <Svg viewBox="0 0 100 100" width="80px">
+      <Circle cx="50" cy="50" r="30" />
+      <InnerCircle cx="50" cy="50" r="15" />
+    </Svg>
+  </Wrapper>
 }
 
 export default Spinner
