@@ -1,11 +1,15 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import Head from 'next/head'
 
 import '../styles/global.css'
+import analytics from '../helpers/google-analytics'
 
 
 function App ({ Component, pageProps }) {
+  useEffect(() => {
+    analytics.setup('UA-158548765-1')
+  }, [])
   return <>
       <Head>
         <title>Headline-ificator</title>
